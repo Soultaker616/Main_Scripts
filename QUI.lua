@@ -1,4 +1,4 @@
--- By Qwar1e | Invite: https://discord.gg/c3pHW9VX3D
+-- By Qwar1e | Invite: https://discord.gg/c3pHW9VX3D | Script: local Next_Hub = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Qwarle/Main_Scripts/main/QUI.lua')))()
 --[[
 
 
