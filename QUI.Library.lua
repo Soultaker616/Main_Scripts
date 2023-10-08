@@ -102,6 +102,10 @@ function QUILibrary:Window(opt)
 	MakeCorner(Phon,0, 20)
 	MakeDraggable(Generall)
 	
+	if CoreGui:FindFirstChild(QUILibrary.Name) then
+		CoreGui:FindFirstChild(QUILibrary.Name):Destroy()
+	end
+	
 	QUILibrary.Name 			= "QUI.Library"
 	QUILibrary.Parent 			= CoreGui
 	QUILibrary.ZIndexBehavior 	= Enum.ZIndexBehavior.Sibling
