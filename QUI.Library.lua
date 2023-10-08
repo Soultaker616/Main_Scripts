@@ -12,7 +12,7 @@ local Players 				= game:GetService("Players")
 local StarterGui			= game:GetService("StarterGui")
 local CoreGui				= game:GetService("CoreGui")
 
-
+local pr = 0
 
 local function randomString()
 	if QUI_Settings.Obfuscation then
@@ -256,7 +256,25 @@ function QUILibrary:Window(opt)
 			TweenService:Create(Tab, TweenInfo.new(.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = Color3.fromRGB(0, 85, 121)}):Play()
 		end)
 		
+		local function updateTabFrameSize()
+			local children = TabFrame:GetChildren()
+			local count = 0
+			for _, child in pairs(children) do
+				if child:IsA("GuiObject") then
+					count = count + 1
+				end
+			end
+			local newHeight = math.max(256, count * 36)
+			TabFrame.CanvasSize = UDim2.new(0, 0, 0, newHeight)
+		end
+
+		TabFrame.ChildAdded:Connect(updateTabFrameSize)
+		TabFrame.ChildRemoved:Connect(updateTabFrameSize)
+		
+		updateTabFrameSize()
+		
 		function TabsTable:MakeButton(ButtonOptions)
+			pr+=1
 			local Buttons 			= {}
 			ButtonOptions.callback 	= ButtonOptions.callback or function() end
 			local Button 			= Instance.new("TextButton")
@@ -295,6 +313,7 @@ function QUILibrary:Window(opt)
 		end
 		
 		function TabsTable:MakeToggle(ToggleOptions)
+			pr+=1
 			local Toggles 				= {}
 			local bool					= false
 			ToggleOptions.callback 		= ToggleOptions.callback or function(bool) end
@@ -352,6 +371,7 @@ function QUILibrary:Window(opt)
 		end
 		
 		function TabsTable:MakeLabel(LabelOptions)
+			pr+=1
 			local Labels = {}
 			
 			local Label = Instance.new("TextLabel", TabFrame)
@@ -375,6 +395,7 @@ function QUILibrary:Window(opt)
 		end
 		
 		function TabsTable:MakeTextBox(TextBoxOptions)
+			pr+=1
 			local TextBoxs = {}
 			
 			TextBoxOptions.callback = TextBoxOptions.callback or function(value) end
@@ -412,6 +433,7 @@ function QUILibrary:Window(opt)
 		
 
 		function TabsTable:MakeSlider(SliderOptions)
+			pr+=1
 			local Sliders = {}
 
 			local value = SliderOptions.Min
